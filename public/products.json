@@ -1,0 +1,51 @@
+[
+    {
+        "name": "BENGOO G9000 Stereo Gaming Headset for PS4 PC Xbox One PS5 Controller,",
+        "image": "https://m.media-amazon.com/images/I/61CGHv6kmWL._AC_SY355_.jpg",
+        "description": "【Multi-Platform Compatible】Support PlayStation 4, New Xbox One, PC, Nintendo 3DS, Laptop, PSP, Tablet, iPad, Computer, Mobile Phone. Please note you need an extra Microsoft Adapter (Not Included) when connect with an old version Xbox One controller.【Surrounding Stereo Subwoofer】Clear sound operating strong brass, splendid ambient noise isolation and high precision 40mm magnetic neodymium driver, acoustic positioning precision enhance the sensitivity of the speaker unit, bringing you vivid sound field, sound clarity, shock feeling sound. Perfect for various games like Halo 5 Guardians, Metal Gear Solid, Call of Duty, Star Wars Battlefront, Overwatch, World of Warcraft Legion, etc.,\"unit_price\": 70,\"Available_qty\":24000,\"minimum_order_qty\":1500}]",
+        "unit_price": 65,
+        "Available_qty":35000,
+        "minimum_order_qty":2000
+    },
+    {
+        "name": "Corsair Vengeance RGB PRO 16GB (2x8GB) DDR4 3200MHz C16 LED Desktop Memory - Black",
+        "image": "https://m.media-amazon.com/images/I/71Kkm5nIRKL._AC_SX522_PIbundle-2,TopRight,0,0_SH20_.jpg",
+        "description": "High performance DDR4 memory illuminates your system with vivid, animated lighting from ten ultra-bright, individually addressable RGB LEDs per module, Take control with CORSAIR iCUE software and synchronize lighting across all your CORSAIR iCUE compatible products, including memory, fans, coolers, keyboards and more.",
+        "unit_price": 100,
+        "Available_qty":10000,
+        "minimum_order_qty":500
+    },
+    {
+        "name": "Casematix Waterproof Laptop Hard Case",
+        "image": "https://m.media-amazon.com/images/I/81Y0Npwu4ZL._AC_SX522_.jpg",
+        "description": "Crushproof Protection for Laptop & Accessories: Don't trust your laptop with a sleeve or backpack, the CASEMATIX hardshell hard case laptop vault offers unparalleled protection for 15-17\" laptops along with chargers, keyboards, mice, tablets & more.",
+        "unit_price": 20,
+        "Available_qty":20000,
+        "minimum_order_qty":1000
+    },
+    {
+        "name": "MEK Hero G1 A5938V2 Gaming Desktop",
+        "image": "https://m.media-amazon.com/images/I/61EZazyxnpL._AC_SX355_.jpg",
+        "description": "ZOTAC GAMING GeForce RTX 3080 12GB GDDR6 256-bit, AMD Ryzen 9 5950X 3.4GHz (4.9GHz Turbo) 16-core/32-Thread Processor w/240MM EKWB Liquid Cooler, 32GB (16GB X 2) Dual Channel ARGB 3200MHz DDR4",
+        "unit_price": 60,
+        "Available_qty":25000,
+        "minimum_order_qty":1500
+    },
+    {
+        "name": "Ergonomic Laptop Stand For Desk, Adjustable Height Up To 20",
+        "image": "https://m.media-amazon.com/images/I/61SS97nEnBL._AC_SX522_.jpg",
+        "description": "UPRYZE ERGONOMIC STAND! If You are having issues with your back then you are at the right place, Our ERGONOMIC LAPTOP STAND is compatible and will work perfectly for ALL MACBOOK AND LAPTOPS of all sizes from 10 inch tablets to 17 inch laptops including MacBook Air, Pro, 10, 13, 15, 15.6 and 17 inch laptops. You can USE IT WHILE SITTING OR STANDING. With it's cool design, it even keeps your laptop cool so that it DOESN'T OVERHEAT.",
+        "unit_price": 60,
+        "Available_qty":25000,
+        "minimum_order_qty":1500
+    },
+    {
+        "name": "Amazon Basics Notebook Laptop Stand Arm Mount Tray",
+        "image": "https://m.media-amazon.com/images/I/81qV7uILzhL._AC_SX522_.jpg",
+        "description": "Arm mount tray accessory for a notebook computer ideal for creating an ergonomic workstation Includes a notebook tray and all necessary hardware and instructions Open-sided mounting plate with adjustable length knobs accommodates almost any size notebook up to 12lbs Attaches to a standard VESA 75mm mounting bracket Compatible with all Amazon Basics display arms (sold separately)",
+        "unit_price": 70,
+        "Available_qty":24000,
+        "minimum_order_qty":1500
+    }
+    
+]
