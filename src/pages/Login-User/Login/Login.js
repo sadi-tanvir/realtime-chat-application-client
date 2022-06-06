@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInputField from '../../shared/re-usable-components/TextInputField';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 
 
@@ -32,7 +32,8 @@ const Login = () => {
                                 <span class="text-sm ml-2 hover:text-blue-500 cursor-pointer hover:-translate-y-1 duration-500 transition-all">Forgot Password ?</span>
                                 <a href="#" class="text-sm ml-2 hover:text-blue-500 cursor-pointer hover:-translate-y-1 duration-500 transition-all">Don't have an account yet?</a>
                             </div>
-
+                            <div class="divider">OR</div>
+                            <SocialLogin />
                         </form>
                     </div>
                 </div>
