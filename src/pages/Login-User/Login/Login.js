@@ -9,7 +9,7 @@ const Login = () => {
     return (
         <div>
 
-            <div class="h-screen flex justify-center items-center">
+            <div class="h-screen flex justify-center items-center py-20">
                 <div class="flex w-full lg:w-7/12 justify-center items-center bg-white space-y-8">
                     <div class="w-full px-8 md:px-32 lg:px-24">
                         <form class="bg-white rounded-md shadow-2xl px-8 py-10 rounded-xl">
