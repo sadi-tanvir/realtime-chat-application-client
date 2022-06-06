@@ -61,9 +61,6 @@ const Register = () => {
         }
     }
 
-    const handleDrug = (e) => {
-        console.log(e.target);
-    }
     return (
         <div>
 
@@ -95,7 +92,7 @@ const Register = () => {
                                         <UploadIcon />
                                         <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                                     </div>
-                                    <input onDragOver={handleDrug} onChange={(e) => postPicture(e.target.files[0])} id="dropzone-file" type="file" class="hidden" />
+                                    <input onChange={(e) => postPicture(e.target.files[0])} id="dropzone-file" type="file" class="hidden" />
                                 </label>
                             </div>
                             <button disabled={loading ? true : false} type="submit" class="block w-full bg-primary mt-5 py-2 rounded-2xl hover:bg-primary hover:-translate-y-1 transition-all duration-500 text-white font-semibold mb-2">Register</button>
