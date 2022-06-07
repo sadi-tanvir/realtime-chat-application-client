@@ -37,7 +37,7 @@ const Register = () => {
                     setLoading(false)
                 })
         } else {
-            toast.error('file upload failed');
+            toast.error('file type not supported');
             setLoading(false)
             return;
         }
@@ -53,11 +53,17 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const {name, email, password} = info;
-            const res  = await axios.post(`${apiBaseUrl}/register`, {name, email, password, picture})
+            const { name, email, password } = info;
+            const res = await axios.post(`${apiBaseUrl}/register`, { name, email, password, picture })
+            if (res.data.message) {
+                toast.success(res.data.message)
+            }
+            localStorage.setItem("userInfo", JSON.stringify(res.data.user))
+            localStorage.setItem("accessToken", JSON.stringify(res.data.token))
             console.log(res.data);
         } catch (error) {
             console.log(error);
+            toast.error(error.response.data.message);
         }
     }
 

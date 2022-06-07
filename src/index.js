@@ -7,15 +7,19 @@ import { BrowserRouter } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import { HelmetProvider } from "react-helmet-async";
 import 'react-toastify/dist/ReactToastify.css';
+import { Provider } from "react-redux"
+import store from "./redux/store";
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </HelmetProvider>
+    <Provider store={store}>
+      <HelmetProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </HelmetProvider>
+    </Provider>
   </React.StrictMode>
   , document.getElementById("root")
 );

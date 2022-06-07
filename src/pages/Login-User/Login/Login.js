@@ -25,6 +25,8 @@ const Login = () => {
         try {
             const {email, password} = info;
             const res  = await axios.post(`${apiBaseUrl}/login`, {email, password})
+            localStorage.setItem("userInfo", JSON.stringify(res.data.user))
+            localStorage.setItem("accessToken", JSON.stringify(res.data.token))
             console.log(res.data);
         } catch (error) {
             console.log(error);
