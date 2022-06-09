@@ -6,6 +6,8 @@ import ChatItem from './components/ChatItem';
 import Avatar from '../shared/re-usable-components/Avatar';
 import ActiveFriendList from './components/ActiveFriendList';
 import ChatHistory from './components/ChatHistory';
+import Collapse from '../shared/re-usable-components/Collapse';
+import Message from './components/Message';
 
 
 
@@ -26,6 +28,7 @@ const Chat = () => {
                                     <Avatar
                                         img="https://api.lorem.space/image/face?hash=28212"
                                         status="online"
+                                        size="w-9"
                                     />
                                     <h1 className="text-lg font-bold text-red-500 ml-1 capitalize">
                                         tanvir sadi
@@ -36,6 +39,9 @@ const Chat = () => {
                                     <VideoIcon iconClass="ml-1" />
                                 </div>
                             </div>
+
+                            {/* message area */}
+                            <Message />
 
                             {/* send message area */}
                             <div className="absolute bottom-0 w-full">
@@ -50,7 +56,7 @@ const Chat = () => {
                                         </button>
                                         <input type="text" placeholder="Type here" class="input input-bordered w-full" />
                                         <button type="submit" class="inline-flex justify-center rounded-full cursor-pointer hover:bg-blue-100 dark:hover:bg-gray-600">
-                                            <SendIcon 
+                                            <SendIcon
                                                 iconClass="ml-2"
                                             />
                                         </button>
@@ -58,8 +64,31 @@ const Chat = () => {
                                 </form>
                             </div>
                         </div>
-                        <div className="bg-slate-200 col-span-1">
 
+                        {/* chatting information */}
+                        <div className="bg-slate-200">
+                            <div className="col-span-1 text-center pt-16">
+                                <Avatar
+                                    img="https://api.lorem.space/image/face?hash=28212"
+                                    status="online"
+                                    size="w-16"
+                                />
+                                <h1 className="text-xl font-bold text-red-500 ml-1 capitalize">
+                                    tanvir sadi
+                                </h1>
+                            </div>
+
+                            <div className="mt-8">
+                                <Collapse header="customize chat">
+                                    <p>tanvir hossain sadi</p>
+                                </Collapse>
+                                <Collapse header="customize chat">
+                                    <p>tanvir hossain sadi</p>
+                                </Collapse>
+                                <Collapse header="customize chat">
+                                    <p>tanvir hossain sadi</p>
+                                </Collapse>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -74,6 +103,7 @@ const Chat = () => {
                                 <Avatar
                                     img="https://api.lorem.space/image/face?hash=28212"
                                     status="online"
+                                    size="w-9"
                                 />
                                 <h1 className="text-lg font-bold text-red-500 ml-1 capitalize">tanvir sadi</h1>
                             </div>

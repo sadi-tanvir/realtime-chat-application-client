@@ -11,11 +11,13 @@ const ActiveFriendList = () => {
                     img="https://api.lorem.space/image/face?hash=28212"
                     status="online"
                     divClass=""
+                    size="w-9"
                 />
                 <Avatar
                     img="https://api.lorem.space/image/face?hash=28212"
                     status="online"
                     divClass="ml-1"
+                    size="w-9"
                 />
             </div>
         </>

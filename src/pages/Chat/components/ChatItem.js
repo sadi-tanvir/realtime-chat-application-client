@@ -10,6 +10,7 @@ const ChatItem = ({ img, name, current, status }) => {
                 <Avatar
                     img={img}
                     status={status}
+                    size="w-9"
                 />
                 <h1 className="text-lg font-bold text-slate-500 ml-2 capitalize">
                     {name}
