@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Avatar = ({ status, img }) => {
+const Avatar = ({ status, img, divClass }) => {
     return (
         <>
-            <div class={`avatar ${status}`}> {/* offline */}
+            <div class={`avatar ${status} ${divClass}`}> {/* offline */}
                 <div class="w-9 rounded-full">
                     <img src={img} alt="" />
                 </div>
