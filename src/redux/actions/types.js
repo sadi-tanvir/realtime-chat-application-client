@@ -1,4 +1,0 @@
-export const IS_LOADING = 'IS_LOADING'
-export const IS_AUTHENTICATE = 'IS_AUTHENTICATE'
-export const USER_INFO = 'USER_INFO'
-export const ACCESS_TOKEN = 'ACCESS_TOKEN'

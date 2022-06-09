@@ -5,10 +5,16 @@ import UserIcon, { EmailIcon, PasswordIcon, UploadIcon } from '../../shared/re-u
 import { toast } from "react-toastify"
 import axios from 'axios';
 import { apiBaseUrl } from '../../../utils/apiBaseUrl';
+import { useDispatch, useSelector } from "react-redux"
+import setAuthToken from '../../../utils/setAuthToken';
 
 
 
 const Register = () => {
+    // react redux
+    const dispatch = useDispatch()
+    const state = useSelector(state => state.authReducer)
+    console.log(state);
     const [info, setInfo] = useState({
         name: '',
         email: '',
@@ -16,6 +22,9 @@ const Register = () => {
     })
     const [picture, setPicture] = useState("")
     const [loading, setLoading] = useState(false)
+
+
+
     const postPicture = (pic) => {
         setLoading(true)
         if (pic === undefined) {
@@ -55,12 +64,18 @@ const Register = () => {
         try {
             const { name, email, password } = info;
             const res = await axios.post(`${apiBaseUrl}/register`, { name, email, password, picture })
+            if (res.data.user) {
+                localStorage.setItem("userInfo", JSON.stringify(res.data.user))
+                localStorage.setItem("accessToken", JSON.stringify(res.data.token))
+                dispatch({ type: 'loginUser' })
+                dispatch({ type: 'userInfo', payload: res.data.user })
+                dispatch({ type: "accessToken", payload: res.data.token })
+                setAuthToken(res.data.token)
+            }
             if (res.data.message) {
                 toast.success(res.data.message)
             }
-            localStorage.setItem("userInfo", JSON.stringify(res.data.user))
-            localStorage.setItem("accessToken", JSON.stringify(res.data.token))
-            console.log(res.data);
+
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message);

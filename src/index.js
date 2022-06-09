@@ -13,13 +13,13 @@ import store from "./redux/store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <HelmetProvider>
-        <BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Provider store={store}>
           <App />
-        </BrowserRouter>
-      </HelmetProvider>
-    </Provider>
+        </Provider>
+      </BrowserRouter>
+    </HelmetProvider>
   </React.StrictMode>
   , document.getElementById("root")
 );

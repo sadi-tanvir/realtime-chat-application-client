@@ -4,10 +4,18 @@ import { Link } from 'react-router-dom'
 import { EmailIcon, PasswordIcon } from '../../shared/re-usable-components/Icon';
 import axios from 'axios';
 import { apiBaseUrl } from '../../../utils/apiBaseUrl';
-
+import { useDispatch, useSelector } from "react-redux"
+import setAuthToken from '../../../utils/setAuthToken';
+import { toast } from "react-toastify"
 
 
 const Login = () => {
+    // react redux
+    const dispatch = useDispatch()
+    const state = useSelector(state => state.authReducer)
+
+
+    // state
     const [info, setInfo] = useState({
         email: '',
         password: ''
@@ -25,10 +33,22 @@ const Login = () => {
         try {
             const {email, password} = info;
             const res  = await axios.post(`${apiBaseUrl}/login`, {email, password})
-            localStorage.setItem("userInfo", JSON.stringify(res.data.user))
-            localStorage.setItem("accessToken", JSON.stringify(res.data.token))
-            console.log(res.data);
+
+            if (res.data.user) {
+                localStorage.setItem("userInfo", JSON.stringify(res.data.user))
+                localStorage.setItem("accessToken", JSON.stringify(res.data.token))
+                dispatch({ type: 'loginUser' })
+                dispatch({ type: 'userInfo', payload: res.data.user })
+                dispatch({ type: "accessToken", payload: res.data.token })
+                setAuthToken(res.data.token)
+            }
+
+            if (res.data.message) {
+                toast.success(res.data.message)
+            }
+
         } catch (error) {
+            toast.error(error.response.data.message);
             console.log(error);
         }
     }
