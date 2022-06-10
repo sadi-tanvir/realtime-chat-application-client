@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios"
 import { apiBaseUrl } from '../../utils/apiBaseUrl';
 import { AttachIcon, CallIcon, DotIcon, EditIcon, EmojiIcon, SendIcon, VideoIcon } from "../shared/re-usable-components/Icon"
@@ -13,6 +13,27 @@ import Message from './components/Message';
 
 
 const Chat = () => {
+    const [textMsg, setTextMsg] = useState({
+        msg: "",
+        emoji: ""
+    })
+    const [showEmoji, setShowEmoji] = useState(false)
+    console.log(showEmoji);
+    const emojiList = [
+        "😜", "😙", "😘", "✌", "😭", "😷", "😳", "😂", "😢", "🎁", "💝", "👌", "👍", "👋", "🔥", "⚠", "⚽", "🚭", "🔕", "🔇",
+    ]
+    // handle emoji text
+    const handleEmoji = (e) => {
+        console.log(e.target.value);
+        const emoji = e.target.value;
+        setTextMsg({ ...textMsg, ...emoji })
+    }
+
+    // handle message input
+    const handleChange = (e) => {
+        const msg = e.target.value;
+        setTextMsg({ ...textMsg, msg })
+    }
     return (
         <div>
             <div class="drawer drawer-mobile">
@@ -30,7 +51,7 @@ const Chat = () => {
                                         status="online"
                                         size="w-9"
                                     />
-                                    <h1 className="text-lg font-bold text-red-500 ml-1 capitalize">
+                                    <h1 className="text-lg font-bold text-slate-500 ml-1 capitalize">
                                         tanvir sadi
                                     </h1>
                                 </div>
@@ -51,29 +72,49 @@ const Chat = () => {
                                         <button type="button" class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                                             <AttachIcon />
                                         </button>
-                                        <button type="button" class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                                            <EmojiIcon />
-                                        </button>
-                                        <input type="text" placeholder="Type here" class="input input-bordered w-full" />
+
+                                        <div class="dropdown dropdown-top mr-1">
+                                            <label onClick={() => setShowEmoji(!showEmoji)} tabindex="0" class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"><EmojiIcon /></label>
+                                            <div tabindex="0" class={`${showEmoji ? "block":"hidden"} dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40`}>
+                                                <div className="grid grid-cols-5">
+                                                    {
+                                                        emojiList.map(item =>
+                                                            <input
+                                                                onClick={handleEmoji} className='cursor-pointer'
+                                                                value={item}
+                                                                type="text"
+                                                            />
+                                                        )
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input
+                                            onChange={handleChange}
+                                            type="text"
+                                            placeholder="Type Your Message"
+                                            class="input input-bordered w-full"
+                                        />
                                         <button type="submit" class="inline-flex justify-center rounded-full cursor-pointer hover:bg-blue-100 dark:hover:bg-gray-600">
                                             <SendIcon
                                                 iconClass="ml-2"
                                             />
                                         </button>
+
                                     </div>
                                 </form>
                             </div>
                         </div>
 
                         {/* chatting information */}
-                        <div className="bg-slate-200">
+                        <div className="bg-slate-100">
                             <div className="col-span-1 text-center pt-16">
                                 <Avatar
                                     img="https://api.lorem.space/image/face?hash=28212"
                                     status="online"
                                     size="w-16"
                                 />
-                                <h1 className="text-xl font-bold text-red-500 ml-1 capitalize">
+                                <h1 className="text-xl font-bold text-slate-500 ml-1 capitalize">
                                     tanvir sadi
                                 </h1>
                             </div>
@@ -105,7 +146,7 @@ const Chat = () => {
                                     status="online"
                                     size="w-9"
                                 />
-                                <h1 className="text-lg font-bold text-red-500 ml-1 capitalize">tanvir sadi</h1>
+                                <h1 className="text-lg font-bold text-slate-500 ml-1 capitalize">tanvir sadi</h1>
                             </div>
                             <div className="flex justify-center items-center">
                                 <DotIcon />

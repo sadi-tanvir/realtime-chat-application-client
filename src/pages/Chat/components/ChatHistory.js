@@ -11,12 +11,14 @@ const ChatHistory = () => {
                 <ChatItem
                     img="https://api.lorem.space/image/face?hash=28212"
                     name="sadi hossain"
-                    current="bg-slate-300"
+                    currentBG="bg-teal-400"
+                    currentText="text-white"
                     status="online"
                 />
                 <ChatItem
                     img="https://api.lorem.space/image/face?hash=28212"
                     name="tanvir hossain"
+                    currentText="text-slate-500"
                     status="offline"
                 />
             </div>
