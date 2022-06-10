@@ -75,7 +75,7 @@ const Chat = () => {
 
                                         <div class="dropdown dropdown-top mr-1">
                                             <label onClick={() => setShowEmoji(!showEmoji)} tabindex="0" class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"><EmojiIcon /></label>
-                                            <div tabindex="0" class={`${showEmoji ? "block":"hidden"} dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40`}>
+                                            <div tabindex="0" class={`${showEmoji ? "block" : "hidden"} dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40`}>
                                                 <div className="grid grid-cols-5">
                                                     {
                                                         emojiList.map(item =>
@@ -126,8 +126,13 @@ const Chat = () => {
                                 <Collapse header="customize chat">
                                     <p>tanvir hossain sadi</p>
                                 </Collapse>
-                                <Collapse header="customize chat">
-                                    <p>tanvir hossain sadi</p>
+                                <Collapse header="media file">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                        <img className='p-1 bg-slate-400 rounded-lg' src="https://i.ibb.co/6y4tRSv/mango.jpg" alt="media file" />
+                                        <img className='p-1 bg-slate-400 rounded-lg' src="https://i.ibb.co/6y4tRSv/mango.jpg" alt="media file" />
+                                        <img className='p-1 bg-slate-400 rounded-lg' src="https://i.ibb.co/6y4tRSv/mango.jpg" alt="media file" />
+                                        <img className='p-1 bg-slate-400 rounded-lg' src="https://i.ibb.co/6y4tRSv/mango.jpg" alt="media file" />
+                                    </div>
                                 </Collapse>
                             </div>
                         </div>
