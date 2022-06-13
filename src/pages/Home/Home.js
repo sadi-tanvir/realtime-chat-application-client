@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React from 'react';
 import { useSelector } from 'react-redux'
 import { useDispatch } from "react-redux"
+import { apiBaseUrl } from '../../utils/apiBaseUrl';
 
 const Home = () => {
 
@@ -9,8 +11,8 @@ const Home = () => {
 
     const dispatch = useDispatch()
 
-    const addDataToRedux = () => {
-        dispatch({ type: 'homeChange' })
+    const addDataToRedux = async () => {
+       console.log('clinked home button');
     }
     return (
         <div>

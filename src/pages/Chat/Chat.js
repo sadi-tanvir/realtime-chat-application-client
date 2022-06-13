@@ -8,16 +8,23 @@ import ActiveFriendList from './components/ActiveFriendList';
 import ChatHistory from './components/ChatHistory';
 import Collapse from '../shared/re-usable-components/Collapse';
 import Message from './components/Message';
-
+import { useDispatch, useSelector } from "react-redux"
 
 
 
 const Chat = () => {
+    // redux
+    const dispatch = useDispatch()
+    const {friends} = useSelector(state => state.friendsReducer)
+    console.log(`from chat reducer`,friends);
+
+    // state
+    const [search, setSearch] = useState("")
+    const [showEmoji, setShowEmoji] = useState(false)
     const [textMsg, setTextMsg] = useState({
         msg: "",
         emoji: ""
     })
-    const [showEmoji, setShowEmoji] = useState(false)
     console.log(showEmoji);
     const emojiList = [
         "😜", "😙", "😘", "✌", "😭", "😷", "😳", "😂", "😢", "🎁", "💝", "👌", "👍", "👋", "🔥", "⚠", "⚽", "🚭", "🔕", "🔇",
@@ -34,6 +41,18 @@ const Chat = () => {
         const msg = e.target.value;
         setTextMsg({ ...textMsg, msg })
     }
+
+
+    // getFriends
+    useEffect(() => {
+        const getFriends = async () => {
+            const res = await axios(`${apiBaseUrl}/get-friends?search=${search}`)
+            console.log(res.data.user);
+            dispatch({ type: 'getFriends', payload: res.data.user })
+        }
+        getFriends()
+    }, [search])
+
     return (
         <div>
             <div class="drawer drawer-mobile">
@@ -163,12 +182,12 @@ const Chat = () => {
                         <div className=" mt-5">
                             {/* search friends */}
                             <div class="flex items-center max-w-md mx-auto bg-white rounded-lg " x-data="{ search: '' }">
-                                <input type="search" class="w-full px-4 py-2 text-gray-800 rounded-full focus:outline-none" placeholder="search" x-model="search" />
+                                <input onChange={(e) => setSearch(e.target.value)} type="search" class="w-full px-4 py-2 text-gray-800 rounded-full focus:outline-none" placeholder="search" x-model="search" />
                             </div>
                             {/* Active Friend List */}
                             <ActiveFriendList />
                             {/* Chat History */}
-                            <ChatHistory />
+                            <ChatHistory  friends={friends} />
                         </div>
                     </ul>
                 </div>

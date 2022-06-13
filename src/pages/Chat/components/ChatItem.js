@@ -6,7 +6,7 @@ import Avatar from '../../shared/re-usable-components/Avatar';
 const ChatItem = ({ img, name, currentBG,currentText, status }) => {
     return (
         <>
-            <div className={`flex justify-start items-center py-2 px-2 rounded-md ${currentBG}`}>
+            <div className={`flex justify-start items-center py-2 px-2 my-2 rounded-md ${currentBG}`}>
                 <Avatar
                     img={img}
                     status={status}
