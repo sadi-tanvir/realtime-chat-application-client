@@ -13,10 +13,10 @@ const App = () => {
   const dispatch = useDispatch()
 
   if (localStorage.getItem('userInfo')) {
-    dispatch({ type: 'USER_INFO', payload: JSON.parse(localStorage.getItem('userInfo')) })
-    dispatch({ type: 'ACCESS_TOKEN', payload: JSON.parse(localStorage.getItem('accessToken')) })
+    dispatch({ type: 'userInfo', payload: JSON.parse(localStorage.getItem('userInfo')) })
+    dispatch({ type: 'accessToken', payload: JSON.parse(localStorage.getItem('accessToken')) })
 
-    dispatch({ type: 'LOGIN_USER' })
+    dispatch({ type: 'loginUser' })
     setAuthToken(JSON.parse(localStorage.getItem('accessToken')))
   }
 

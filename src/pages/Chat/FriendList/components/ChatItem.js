@@ -1,12 +1,12 @@
 import React from 'react';
-import Avatar from '../../shared/re-usable-components/Avatar';
+import Avatar from '../../../shared/re-usable-components/Avatar';
 
 
 
-const ChatItem = ({ img, name, currentBG,currentText, status }) => {
+const ChatItem = ({ img, name, divClass,currentText, status, onClick }) => {
     return (
         <>
-            <div className={`flex justify-start items-center py-2 px-2 my-2 rounded-md ${currentBG}`}>
+            <div onClick={onClick}  className={`flex justify-start items-center cursor-pointer py-2 px-2 my-2 active:scale-105 transition-all rounded-md ${divClass}`}>
                 <Avatar
                     img={img}
                     status={status}

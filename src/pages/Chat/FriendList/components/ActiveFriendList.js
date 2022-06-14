@@ -1,6 +1,7 @@
 import React from 'react';
-import Avatar from '../../shared/re-usable-components/Avatar';
-import ChatItem from './ChatItem';
+import Avatar from '../../../shared/re-usable-components/Avatar';
+
+
 
 const ActiveFriendList = () => {
     return (
