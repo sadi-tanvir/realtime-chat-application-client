@@ -7,8 +7,8 @@ const CurrentChatHeader = () => {
     const { currentChat } = useSelector(state => state.chatReducer)
 
     return (
-        <div>
-            <div className="flex justify-between items-center px-3 mt-3">
+        <>
+            <div className="flex justify-between items-center px-3 h-[8%] bg-purple-400 ">
                 <div className="flex justify-center items-center">
                     <Avatar
                         img="https://api.lorem.space/image/face?hash=28212"
@@ -24,7 +24,7 @@ const CurrentChatHeader = () => {
                     <VideoIcon iconClass="ml-1" />
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

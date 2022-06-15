@@ -6,7 +6,6 @@ import ChatList from './components/ChatList';
 
 
 const FriendList = ({ setSearch }) => {
-    const { friends } = useSelector(state => state.friendsReducer)
 
     return (
         <div className="mt-5">
@@ -17,7 +16,7 @@ const FriendList = ({ setSearch }) => {
             {/* Active Friend List */}
             <ActiveFriendList />
             {/* Chat History */}
-            <ChatList friends={friends} />
+            <ChatList />
         </div>
     );
 };

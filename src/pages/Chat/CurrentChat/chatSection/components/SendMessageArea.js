@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AttachIcon, EmojiIcon, SendIcon } from '../../../../shared/re-usable-components/Icon';
 
-const SendMessageArea = ({ setNewMessage, handleSendMessage }) => {
+const SendMessageArea = ({ setNewMessage,newMessage, handleSendMessage }) => {
     // state
     const [showEmoji, setShowEmoji] = useState(false)
     const [textMsg, setTextMsg] = useState("")
@@ -20,7 +20,7 @@ const SendMessageArea = ({ setNewMessage, handleSendMessage }) => {
 
     return (
         <>
-            <div className="absolute bottom-0 w-full">
+            <div className="absolute bottom-0 w-full h-[12%]">
                 <form onSubmit={(e) => handleSendMessage(e.preventDefault())}>
                     <label for="chat" class="sr-only">Your message</label>
                     <div class="flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700">
@@ -46,6 +46,7 @@ const SendMessageArea = ({ setNewMessage, handleSendMessage }) => {
                         </div>
                         <input
                             onChange={(e) => setNewMessage(e.target.value)}
+                            value={newMessage}
                             type="text"
                             placeholder="Type Your Message"
                             class="input input-bordered w-full"

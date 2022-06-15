@@ -4,9 +4,10 @@ import ChatItem from '../components/ChatItem';
 
 
 
-const ChatList = ({ friends }) => {
+const ChatList = () => {
     const dispatch = useDispatch()
-    const { currentChat } = useSelector(state => state.chatReducer)
+    const { friends, currentChat } = useSelector(state => state.chatReducer)
+
 
     useEffect(() => {
         if (friends && friends.length > 0) {
