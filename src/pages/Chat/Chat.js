@@ -31,7 +31,7 @@ const Chat = () => {
                 <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
                 <div class="drawer-content flex flex-col items-center justify-center">
                     {/* <!-- Page content here --> */}
-                    <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                    {/* <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
                     <div className='w-full min-h-screen grid grid-cols-1 md:grid-cols-3 '>
                         {/* current chat with your friend */}
                         <CurrentChat />

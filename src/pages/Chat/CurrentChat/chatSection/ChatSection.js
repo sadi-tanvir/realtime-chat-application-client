@@ -14,7 +14,7 @@ const ChatSection = () => {
     const dispatch = useDispatch()
     // state
     const [newMessage, setNewMessage] = useState("")
-
+    const [imgMessage, setImgMessage] = useState("")
 
     const handleSendMessage = async () => {
         try {
@@ -24,7 +24,7 @@ const ChatSection = () => {
                 receiverId: currentChat._id,
                 message: newMessage
             })
-            console.log(res.data);
+            // console.log(res.data);
 
             // set empty message field
             setNewMessage("")
@@ -32,6 +32,24 @@ const ChatSection = () => {
         } catch (error) {
             console.log(error.response);
         }
+    }
+
+    // handle emoji text
+    const handleSendEmoji = (item) => {
+        console.log(item);
+        setNewMessage(`${newMessage}${item}`)
+    }
+
+    // handle Image Send
+    const handleSendImage = async (e) => {
+        const file = e.target.files[0]
+        // const imageName = `${Date.now()}${file.name}`
+        const formData = new FormData()
+        formData.append('message-image', file)
+        formData.append('senderName', userInfo.name)
+        formData.append('receiverId', currentChat._id)
+        const res = await axios.post(`${apiBaseUrl}/sendImageMessage`, formData)
+        console.log(res.data);
     }
 
 
@@ -59,9 +77,11 @@ const ChatSection = () => {
 
                         {/* send message area */}
                         <SendMessageArea
-                            setNewMessage={setNewMessage}
                             newMessage={newMessage}
+                            setNewMessage={setNewMessage}
                             handleSendMessage={handleSendMessage}
+                            handleSendEmoji={handleSendEmoji}
+                            handleSendImage={handleSendImage}
                         />
                     </div> :
                     <div className="col-span-2 relative">

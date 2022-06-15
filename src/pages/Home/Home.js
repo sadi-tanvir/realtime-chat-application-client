@@ -20,6 +20,7 @@ const Home = () => {
             <a href="https://i.ibb.co/jgDtzL8/empty-avatar.jpg" download>
                 download
             </a>
+            <img src={`${apiBaseUrl}/message-images/message-image-1655284194903-99129364.png`} alt="avatar" />
 
             <button className="mt-10 btn btn-primary w-6/12 block mx-auto" onClick={addDataToRedux}>add data to redux</button>
         </div>
