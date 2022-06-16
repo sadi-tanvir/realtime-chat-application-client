@@ -26,9 +26,17 @@ const Chat = () => {
         socket.current = io('ws://localhost:8000')
     }, [])
 
+    // send user current user info to server
     useEffect(() => {
         socket.current.emit('addUser', userInfo._id, userInfo)
     }, [])
+
+    // get active users
+    useEffect(() => {
+        socket.current.on('getUsers', (users) => {
+            console.log(`this is from socket`,users);
+        })
+    },[])
 
 
 
