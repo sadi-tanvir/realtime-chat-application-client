@@ -7,7 +7,8 @@ import { createReducer } from "@reduxjs/toolkit"
 const initialState = {
     friends: [],
     currentChat: {},
-    messages:[]
+    messages:[],
+    activeUsers: [],
 }
 
 
@@ -20,6 +21,9 @@ const chatReducer = createReducer(initialState, {
     },
     getMessages: (state, action) => {
         state.messages = action.payload
+    },
+    activeUsers: (state, action) => {
+        state.activeUsers = action.payload
     }
 })
 

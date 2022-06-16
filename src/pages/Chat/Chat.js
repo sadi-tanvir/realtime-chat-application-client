@@ -35,6 +35,7 @@ const Chat = () => {
     useEffect(() => {
         socket.current.on('getUsers', (users) => {
             console.log(`this is from socket`,users);
+            dispatch({ type: "activeUsers", payload: users })
         })
     },[])
 
