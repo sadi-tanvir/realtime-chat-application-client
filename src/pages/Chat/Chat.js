@@ -5,15 +5,31 @@ import { useDispatch, useSelector } from "react-redux"
 import FriendList from './FriendList/FriendList';
 import CurrentChat from './CurrentChat/CurrentChat';
 import UserProfile from './UserProfile/UserProfile';
+import { io } from "socket.io-client"
+import { useRef } from 'react';
 
 
 
 const Chat = () => {
     // redux
     const dispatch = useDispatch()
+    const { userInfo } = useSelector(state => state.authReducer)
+    const { currentChat } = useSelector(state => state.chatReducer)
 
     // state
     const [search, setSearch] = useState("")
+
+    // socket
+    const socket = useRef()
+
+    useEffect(() => {
+        socket.current = io('ws://localhost:8000')
+    }, [])
+
+    useEffect(() => {
+        socket.current.emit('addUser', userInfo._id, userInfo)
+    }, [])
+
 
 
     // getFriends

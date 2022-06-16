@@ -31,10 +31,12 @@ const Message = () => {
                                         />
                                         {
                                             message.message.image ?
-                                                < p className="ml-1 py-1 px-2 rounded bg-slate-300 font-semibold text-slate-600">
+                                                // my image message
+                                                < p className="ml-1 py-1 px-1 rounded bg-slate-300 font-semibold text-slate-600">
                                                     <img src={`${apiBaseUrl}/message-images/${message.message?.image}`} className="w-32" alt="mango" border="0" />
                                                 </p>
                                                 :
+                                                // my text message
                                                 <p className="ml-1 py-1 px-2 rounded bg-slate-300 font-semibold text-slate-600">
                                                     {message.message.text}
                                                 </p>
@@ -57,9 +59,11 @@ const Message = () => {
                                         />
                                         {
                                             message.message.image ?
+                                                // Friend's Image message
                                                 <p className="ml-1 py-1 px-1 rounded bg-primary text-teal-800 font-semibold">
                                                     <img src={`${apiBaseUrl}/message-images/${message.message?.image}`} className="w-32" alt="mango" border="0" />
                                                 </p> :
+                                                // Friend's text message
                                                 <p className="ml-1 py-1 px-2 rounded bg-primary text-teal-800 font-semibold">
                                                     {message.message.text}
                                                 </p>
