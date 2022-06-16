@@ -6,12 +6,13 @@ import { apiBaseUrl } from '../../../../../utils/apiBaseUrl';
 
 
 const Message = () => {
-    const { messages } = useSelector(state => state.chatReducer)
+    const { messages, currentChat, activeUsers } = useSelector(state => state.chatReducer)
     const { userInfo } = useSelector(state => state.authReducer)
 
 
 
 
+    const isUserActive = activeUsers.some(user => user.userId === currentChat._id)
 
 
     return (
@@ -26,7 +27,7 @@ const Message = () => {
                                     <div className="flex justify-center items-center">
                                         <Avatar
                                             img="https://api.lorem.space/image/face?hash=28212"
-                                            status="online"
+                                            status={isUserActive ? 'online' : 'offline'}
                                             size="w-7"
                                         />
                                         {

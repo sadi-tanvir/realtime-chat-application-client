@@ -14,7 +14,6 @@ const ChatSection = () => {
     const dispatch = useDispatch()
     // state
     const [newMessage, setNewMessage] = useState("")
-    const [imgMessage, setImgMessage] = useState("")
 
     const handleSendMessage = async () => {
         try {
@@ -70,8 +69,9 @@ const ChatSection = () => {
                     <div className="col-span-2 relative h-screen">
                         {/* friend's chat Header */}
                         <CurrentChatHeader />
+
+                        {/* message area */}
                         <ReactScrollToBottom className="h-[80%] box-border ">
-                            {/* message area */}
                             <Message />
                         </ReactScrollToBottom>
 

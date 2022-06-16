@@ -4,7 +4,6 @@ import { AttachIcon, EmojiIcon, SendIcon } from '../../../../shared/re-usable-co
 const SendMessageArea = ({ newMessage, setNewMessage, handleSendMessage, handleSendEmoji, handleSendImage }) => {
     // state
     const [showEmoji, setShowEmoji] = useState(false)
-    const [textMsg, setTextMsg] = useState("")
 
     // emoji
     const emojiList = [

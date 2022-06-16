@@ -4,7 +4,9 @@ import Avatar from '../../../../shared/re-usable-components/Avatar';
 import { CallIcon, VideoIcon } from '../../../../shared/re-usable-components/Icon';
 
 const CurrentChatHeader = () => {
-    const { currentChat } = useSelector(state => state.chatReducer)
+    const { currentChat, activeUsers } = useSelector(state => state.chatReducer)
+
+    const isUserActive = activeUsers.some(user => user.userId === currentChat._id)
 
     return (
         <>
@@ -12,7 +14,7 @@ const CurrentChatHeader = () => {
                 <div className="flex justify-center items-center">
                     <Avatar
                         img="https://api.lorem.space/image/face?hash=28212"
-                        status="online"
+                        status={isUserActive ? 'online' : 'offline'}
                         size="w-9"
                     />
                     <h1 className="text-lg font-bold text-slate-500 ml-1 capitalize">

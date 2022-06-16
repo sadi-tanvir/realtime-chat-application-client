@@ -6,7 +6,7 @@ import ChatItem from '../components/ChatItem';
 
 const ChatList = () => {
     const dispatch = useDispatch()
-    const { friends, currentChat } = useSelector(state => state.chatReducer)
+    const { friends, currentChat,activeUsers } = useSelector(state => state.chatReducer)
 
 
     useEffect(() => {
@@ -14,7 +14,6 @@ const ChatList = () => {
             dispatch({ type: 'currentChat', payload: friends[0] })
         }
     }, [friends])
-
 
 
     return (
@@ -29,7 +28,7 @@ const ChatList = () => {
                         name={friend.name}
                         divClass={currentChat._id === friend._id ? 'bg-teal-400' : 'bg-white'}
                         currentText={currentChat._id === friend._id ? 'text-white' : 'text-slate-500'}
-                        status="online"
+                        status={activeUsers.some(user => user.userId === friend._id) ? 'online' : 'offline'}
                     />)
                 }
 
@@ -37,7 +36,7 @@ const ChatList = () => {
                     img="https://api.lorem.space/image/face?hash=28212"
                     name="tanvir hossain"
                     currentText="text-slate-500"
-                    status="offline"
+                    status=""
                 /> */}
             </div>
         </>

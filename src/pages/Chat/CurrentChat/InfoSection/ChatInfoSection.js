@@ -7,8 +7,9 @@ import Collapse from '../../../shared/re-usable-components/Collapse';
 
 
 const ChatInfoSection = () => {
-    const { currentChat } = useSelector(state => state.chatReducer)
+    const { currentChat, activeUsers } = useSelector(state => state.chatReducer)
 
+    const isUserActive = activeUsers.some(user => user.userId === currentChat._id)
     return (
         <>
             {/* Friend's Chat Media information */}
@@ -16,9 +17,12 @@ const ChatInfoSection = () => {
                 <div className="col-span-1 text-center pt-16">
                     <Avatar
                         img="https://api.lorem.space/image/face?hash=28212"
-                        status="online"
+                        status={isUserActive ? 'online' : 'offline'}
                         size="w-16"
                     />
+                    <h5 className={`${isUserActive ? "text-teal-500" : "text-red-400"} font-bold`}>
+                        {isUserActive ? 'Online' : 'Offline'}
+                    </h5>
                     <h1 className="text-xl font-bold text-slate-500 ml-1 capitalize">
                         {currentChat.name}
                     </h1>

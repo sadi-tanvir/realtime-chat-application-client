@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Avatar = ({ status, img, divClass,size }) => {
+const Avatar = ({ status, img, divClass,size,onClick }) => {
     return (
         <>
-            <div class={`avatar ${status} ${divClass}`}> {/* offline */}
+            <div onClick={onClick} class={`avatar ${status} ${divClass}`}> {/* offline */}
                 <div class={`rounded-full ${size}`}>
                     <img src={img} alt="" />
                 </div>

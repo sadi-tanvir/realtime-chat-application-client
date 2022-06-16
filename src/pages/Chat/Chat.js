@@ -34,10 +34,10 @@ const Chat = () => {
     // get active users
     useEffect(() => {
         socket.current.on('getUsers', (users) => {
-            console.log(`this is from socket`,users);
-            dispatch({ type: "activeUsers", payload: users })
+            const filteredUsers = users.filter(user => user.userId !== userInfo._id)
+            dispatch({ type: "activeUsers", payload: filteredUsers })
         })
-    },[])
+    }, [])
 
 
 
