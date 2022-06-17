@@ -26,12 +26,12 @@ const Message = () => {
                                 <div className="flex flex-col justify-start items-end mr-2 mt-3">
                                     <div className="flex justify-center items-center">
                                         <Avatar
-                                            img="https://api.lorem.space/image/face?hash=28212"
-                                            status={isUserActive ? 'online' : 'offline'}
+                                            img={userInfo.picture}
+                                            status="online"
                                             size="w-7"
                                         />
                                         {
-                                            message.message.image ?
+                                            message.message?.image ?
                                                 // my image message
                                                 < p className="ml-1 py-1 px-1 rounded bg-slate-300 font-semibold text-slate-600">
                                                     <img src={`${apiBaseUrl}/message-images/${message.message?.image}`} className="w-32" alt="mango" border="0" />
@@ -39,7 +39,7 @@ const Message = () => {
                                                 :
                                                 // my text message
                                                 <p className="ml-1 py-1 px-2 rounded bg-slate-300 font-semibold text-slate-600">
-                                                    {message.message.text}
+                                                    {message.message?.text}
                                                 </p>
                                         }
 
@@ -54,19 +54,19 @@ const Message = () => {
                                 <div className="flex flex-col justify-start items-start ml-2 mt-3">
                                     <div className="flex justify-center items-center">
                                         <Avatar
-                                            img="https://api.lorem.space/image/face?hash=28212"
-                                            status="online"
+                                            img={currentChat.picture}
+                                            status={isUserActive ? 'online' : 'offline'}
                                             size="w-7"
                                         />
                                         {
-                                            message.message.image ?
+                                            message.message?.image ?
                                                 // Friend's Image message
                                                 <p className="ml-1 py-1 px-1 rounded bg-primary text-teal-800 font-semibold">
                                                     <img src={`${apiBaseUrl}/message-images/${message.message?.image}`} className="w-32" alt="mango" border="0" />
                                                 </p> :
                                                 // Friend's text message
                                                 <p className="ml-1 py-1 px-2 rounded bg-primary text-teal-800 font-semibold">
-                                                    {message.message.text}
+                                                    {message.message?.text}
                                                 </p>
 
                                         }

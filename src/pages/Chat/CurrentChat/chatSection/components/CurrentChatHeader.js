@@ -13,7 +13,7 @@ const CurrentChatHeader = () => {
             <div className="flex justify-between items-center px-3 h-[8%]">
                 <div className="flex justify-center items-center">
                     <Avatar
-                        img="https://api.lorem.space/image/face?hash=28212"
+                        img={currentChat.picture}
                         status={isUserActive ? 'online' : 'offline'}
                         size="w-9"
                     />

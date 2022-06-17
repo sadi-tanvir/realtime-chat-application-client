@@ -7,31 +7,12 @@ import { apiBaseUrl } from "../../../../utils/apiBaseUrl"
 import axios from 'axios'
 import ReactScrollToBottom from "react-scroll-to-bottom"
 
-const ChatSection = () => {
+const ChatSection = ({ newMessage, setNewMessage, handleSendMessage }) => {
     // redux
     const { userInfo } = useSelector(state => state.authReducer)
     const { currentChat } = useSelector(state => state.chatReducer)
     const dispatch = useDispatch()
-    // state
-    const [newMessage, setNewMessage] = useState("")
-
-    const handleSendMessage = async () => {
-        try {
-            // send request to the server
-            const res = await axios.post(`${apiBaseUrl}/sendMessage`, {
-                senderName: userInfo.name,
-                receiverId: currentChat._id,
-                message: newMessage
-            })
-            // console.log(res.data);
-
-            // set empty message field
-            setNewMessage("")
-
-        } catch (error) {
-            console.log(error.response);
-        }
-    }
+    
 
     // handle emoji text
     const handleSendEmoji = (item) => {

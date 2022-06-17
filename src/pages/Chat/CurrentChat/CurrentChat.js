@@ -4,11 +4,15 @@ import ChatInfoSection from './InfoSection/ChatInfoSection';
 
 
 
-const CurrentChat = () => {
+const CurrentChat = ({ newMessage, setNewMessage, handleSendMessage }) => {
 
     return (
         <>
-            <ChatSection />
+            <ChatSection
+                newMessage={newMessage}
+                setNewMessage={setNewMessage}
+                handleSendMessage={handleSendMessage}
+            />
             <ChatInfoSection />
         </>
     );

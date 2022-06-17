@@ -24,6 +24,9 @@ const chatReducer = createReducer(initialState, {
     },
     activeUsers: (state, action) => {
         state.activeUsers = action.payload
+    },
+    socketMessage: (state, action) => {
+        state.messages.push(action.payload)
     }
 })
 

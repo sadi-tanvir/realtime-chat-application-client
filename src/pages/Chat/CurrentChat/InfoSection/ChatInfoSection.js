@@ -16,7 +16,7 @@ const ChatInfoSection = () => {
             <div className="bg-slate-100">
                 <div className="col-span-1 text-center pt-16">
                     <Avatar
-                        img="https://api.lorem.space/image/face?hash=28212"
+                        img={currentChat.picture}
                         status={isUserActive ? 'online' : 'offline'}
                         size="w-16"
                     />

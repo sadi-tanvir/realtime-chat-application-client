@@ -24,7 +24,7 @@ const ChatList = () => {
                     friends.map(friend => <ChatItem
                         onClick={() => dispatch({ type: 'currentChat', payload: friend })}
                         key={friend._id}
-                        img="https://api.lorem.space/image/face?hash=28212"
+                        img={friend.picture}
                         name={friend.name}
                         divClass={currentChat._id === friend._id ? 'bg-teal-400' : 'bg-white'}
                         currentText={currentChat._id === friend._id ? 'text-white' : 'text-slate-500'}

@@ -13,7 +13,7 @@ const ActiveFriendList = () => {
             <div className="mt-5">
         {
             activeUsers.map(user => <Avatar
-                img="https://api.lorem.space/image/face?hash=28212"
+                img={user.userInfo.picture}
                 status="online"
                 divClass="ml-1 cursor-pointer active:scale-105 transition-all"
                 size="w-9"

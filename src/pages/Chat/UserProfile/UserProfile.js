@@ -12,7 +12,7 @@ const UserProfile = () => {
             <div className="flex justify-between items-center">
                 <div className="flex justify-center items-center">
                     <Avatar
-                        img="https://api.lorem.space/image/face?hash=28212"
+                        img={userInfo.picture}
                         status="online"
                         size="w-9"
                     />
