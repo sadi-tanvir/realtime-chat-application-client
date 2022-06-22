@@ -7,16 +7,15 @@ import { apiBaseUrl } from "../../../../utils/apiBaseUrl"
 import axios from 'axios'
 import ReactScrollToBottom from "react-scroll-to-bottom"
 
-const ChatSection = ({ newMessage, setNewMessage, handleSendMessage }) => {
+const ChatSection = ({ newMessage, setNewMessage, handleSendMessage, handleChangeMessage }) => {
     // redux
     const { userInfo } = useSelector(state => state.authReducer)
     const { currentChat } = useSelector(state => state.chatReducer)
     const dispatch = useDispatch()
-    
+
 
     // handle emoji text
     const handleSendEmoji = (item) => {
-        console.log(item);
         setNewMessage(`${newMessage}${item}`)
     }
 
@@ -63,6 +62,7 @@ const ChatSection = ({ newMessage, setNewMessage, handleSendMessage }) => {
                             handleSendMessage={handleSendMessage}
                             handleSendEmoji={handleSendEmoji}
                             handleSendImage={handleSendImage}
+                            handleChangeMessage={handleChangeMessage}
                         />
                     </div> :
                     <div className="col-span-2 relative">

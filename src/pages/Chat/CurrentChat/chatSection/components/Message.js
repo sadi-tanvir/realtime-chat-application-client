@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Avatar from '../../../../shared/re-usable-components/Avatar';
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import { apiBaseUrl } from '../../../../../utils/apiBaseUrl';
 
 
 
 const Message = () => {
-    const { messages, currentChat, activeUsers } = useSelector(state => state.chatReducer)
+    // redux
+    const { messages,isTyping, currentChat, activeUsers } = useSelector(state => state.chatReducer)
     const { userInfo } = useSelector(state => state.authReducer)
 
-
-
-
+    
     const isUserActive = activeUsers.some(user => user.userId === currentChat._id)
 
 
@@ -33,12 +32,12 @@ const Message = () => {
                                         {
                                             message.message?.image ?
                                                 // my image message
-                                                < p className="ml-1 py-1 px-1 rounded bg-slate-300 font-semibold text-slate-600">
+                                                < p className="ml-1 py-1 px-1 rounded bg-primary text-teal-800 font-semibold">
                                                     <img src={`${apiBaseUrl}/message-images/${message.message?.image}`} className="w-32" alt="mango" border="0" />
                                                 </p>
                                                 :
                                                 // my text message
-                                                <p className="ml-1 py-1 px-2 rounded bg-slate-300 font-semibold text-slate-600">
+                                                <p className="ml-1 py-1 px-2 rounded bg-primary text-slate-600 font-semibold">
                                                     {message.message?.text}
                                                 </p>
                                         }
@@ -61,11 +60,11 @@ const Message = () => {
                                         {
                                             message.message?.image ?
                                                 // Friend's Image message
-                                                <p className="ml-1 py-1 px-1 rounded bg-primary text-teal-800 font-semibold">
+                                                <p className="ml-1 py-1 px-1 rounded bg-slate-300 text-slate-600 font-semibold">
                                                     <img src={`${apiBaseUrl}/message-images/${message.message?.image}`} className="w-32" alt="mango" border="0" />
                                                 </p> :
                                                 // Friend's text message
-                                                <p className="ml-1 py-1 px-2 rounded bg-primary text-teal-800 font-semibold">
+                                                <p className="ml-1 py-1 px-2 rounded bg-slate-300 text-slate-600 font-semibold">
                                                     {message.message?.text}
                                                 </p>
 
@@ -73,10 +72,34 @@ const Message = () => {
                                     </div>
                                     <small className="ml-8 font-semibold text-slate-600">10 Jun 2022</small>
                                 </div>
+
+
+
                             </>
+
                     )
                 })
             }
+
+            {/*  showing typing status */}
+            {
+                isTyping?.message && isTyping?.senderId === currentChat._id && isTyping?.receiverId === userInfo._id &&
+                <div className="flex flex-col justify-start items-start ml-2 mt-3">
+                    <div className="flex justify-center items-center">
+                        <Avatar
+                            img={currentChat.picture}
+                            status={isUserActive ? 'online' : 'offline'}
+                            size="w-7"
+                        />
+
+                        <p className="ml-1 py-1 px-2 rounded bg-teal-300 text-slate-600 font-semibold">
+                            typing....
+                        </p>
+                    </div>
+                    <small className="ml-8 font-semibold text-slate-600">10 Jun 2022</small>
+                </div>
+            }
+
         </div >
     );
 };

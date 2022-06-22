@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AttachIcon, EmojiIcon, SendIcon } from '../../../../shared/re-usable-components/Icon';
 
-const SendMessageArea = ({ newMessage, setNewMessage, handleSendMessage, handleSendEmoji, handleSendImage }) => {
+const SendMessageArea = ({ newMessage, handleSendMessage, handleSendEmoji, handleSendImage,handleChangeMessage }) => {
     // state
     const [showEmoji, setShowEmoji] = useState(false)
 
@@ -9,6 +9,8 @@ const SendMessageArea = ({ newMessage, setNewMessage, handleSendMessage, handleS
     const emojiList = [
         "😜", "😙", "😘", "✌", "😭", "😷", "😳", "😂", "😢", "🎁", "💝", "👌", "👍", "👋", "🔥", "⚠", "⚽", "🚭", "🔕", "🔇",
     ]
+
+   
 
 
 
@@ -38,7 +40,7 @@ const SendMessageArea = ({ newMessage, setNewMessage, handleSendMessage, handleS
                             </div>
                         </div>
                         <input
-                            onChange={(e) => setNewMessage(e.target.value)}
+                            onChange={handleChangeMessage}
                             value={newMessage}
                             type="text"
                             placeholder="Type Your Message"

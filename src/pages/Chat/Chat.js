@@ -13,7 +13,7 @@ const Chat = () => {
     // redux
     const dispatch = useDispatch()
     const { userInfo } = useSelector(state => state.authReducer)
-    const { currentChat } = useSelector(state => state.chatReducer)
+    const { currentChat, activeUsers } = useSelector(state => state.chatReducer)
 
     // state
     const [search, setSearch] = useState("")
@@ -26,7 +26,8 @@ const Chat = () => {
 
     useEffect(() => {
         socket.current = io('ws://localhost:8000')
-
+        // send current user info to server
+        socket.current.emit('addUser', userInfo._id, userInfo)
     }, [])
 
 
@@ -53,8 +54,17 @@ const Chat = () => {
                 time: new Date()
             })
 
+            // set empty socket typing status
+            socket.current.emit('typingMessage', {
+                senderId: userInfo._id,
+                senderName: userInfo.name,
+                receiverId: currentChat._id,
+                message: ""
+            })
+
             // set empty message field
             setNewMessage("")
+
 
         } catch (error) {
             console.log(error.response);
@@ -62,10 +72,21 @@ const Chat = () => {
     }
 
 
-    useEffect(() => {
-        // send current user info to server
-        socket.current.emit('addUser', userInfo._id, userInfo)
+    // handle change message
+    const handleChangeMessage = (e) => {
+        const { value } = e.target;
+        setNewMessage(value)
 
+        socket.current.emit('typingMessage', {
+            senderId: userInfo._id,
+            senderName: userInfo.name,
+            receiverId: currentChat._id,
+            message: value
+        })
+    }
+
+
+    useEffect(() => {
         // get active users from server
         socket.current.on('getUsers', (users) => {
             const filteredUsers = users.filter(user => user.userId !== userInfo._id)
@@ -76,13 +97,20 @@ const Chat = () => {
         socket.current.on('receiveMessage', (messages) => {
             setSocketMsg(messages)
         })
+
+        // get user typing status
+        socket.current.on('typingMessageStatus', (info) => {
+            dispatch({ type: 'isTyping', payload: info })
+        })
     }, [])
 
 
     // dispatch messages to redux
     useEffect(() => {
-        if (socketMsg) {
-            dispatch({ type: "socketMessage", payload: socketMsg })
+        if (socketMsg && currentChat) {
+            if ((socketMsg.senderId === userInfo._id && socketMsg.receiverId === currentChat._id) || (socketMsg.senderId === currentChat._id && socketMsg.receiverId === userInfo._id)) {
+                dispatch({ type: "socketMessage", payload: socketMsg })
+            }
         }
         setSocketMsg("")
 
@@ -111,6 +139,7 @@ const Chat = () => {
                             newMessage={newMessage}
                             setNewMessage={setNewMessage}
                             handleSendMessage={handleSendMessage}
+                            handleChangeMessage={handleChangeMessage}
                         />
                     </div>
                 </div>

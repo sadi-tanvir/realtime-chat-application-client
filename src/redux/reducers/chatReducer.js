@@ -9,6 +9,7 @@ const initialState = {
     currentChat: {},
     messages:[],
     activeUsers: [],
+    isTyping: {}
 }
 
 
@@ -27,6 +28,9 @@ const chatReducer = createReducer(initialState, {
     },
     socketMessage: (state, action) => {
         state.messages.push(action.payload)
+    },
+    isTyping: (state, action) => {
+        state.isTyping = action.payload
     }
 })
 

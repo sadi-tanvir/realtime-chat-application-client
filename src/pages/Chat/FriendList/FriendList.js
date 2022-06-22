@@ -5,7 +5,7 @@ import ChatList from './components/ChatList';
 
 
 
-const FriendList = ({ setSearch }) => {
+const FriendList = ({ setSearch,isTyping }) => {
 
     return (
         <div className="mt-5">
@@ -16,7 +16,9 @@ const FriendList = ({ setSearch }) => {
             {/* Active Friend List */}
             <ActiveFriendList />
             {/* Chat History */}
-            <ChatList />
+            <ChatList 
+                isTyping={isTyping}
+            />
         </div>
     );
 };
