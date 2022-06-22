@@ -7,17 +7,14 @@ import { apiBaseUrl } from "../../../../utils/apiBaseUrl"
 import axios from 'axios'
 import ReactScrollToBottom from "react-scroll-to-bottom"
 
-const ChatSection = ({ newMessage, setNewMessage, handleSendMessage, handleChangeMessage }) => {
+const ChatSection = ({ newMessage, setNewMessage, handleSendMessage, handleChangeMessage,handleChangeEmoji }) => {
     // redux
     const { userInfo } = useSelector(state => state.authReducer)
     const { currentChat } = useSelector(state => state.chatReducer)
     const dispatch = useDispatch()
 
 
-    // handle emoji text
-    const handleSendEmoji = (item) => {
-        setNewMessage(`${newMessage}${item}`)
-    }
+    
 
     // handle Image Send
     const handleSendImage = async (e) => {
@@ -60,7 +57,7 @@ const ChatSection = ({ newMessage, setNewMessage, handleSendMessage, handleChang
                             newMessage={newMessage}
                             setNewMessage={setNewMessage}
                             handleSendMessage={handleSendMessage}
-                            handleSendEmoji={handleSendEmoji}
+                            handleChangeEmoji={handleChangeEmoji}
                             handleSendImage={handleSendImage}
                             handleChangeMessage={handleChangeMessage}
                         />

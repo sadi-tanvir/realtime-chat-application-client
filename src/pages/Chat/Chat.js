@@ -6,6 +6,7 @@ import FriendList from './FriendList/FriendList';
 import CurrentChat from './CurrentChat/CurrentChat';
 import UserProfile from './UserProfile/UserProfile';
 import { io } from "socket.io-client"
+import { toast, ToastContainer } from 'react-toastify';
 
 
 
@@ -19,6 +20,7 @@ const Chat = () => {
     const [search, setSearch] = useState("")
     const [newMessage, setNewMessage] = useState("")
     const [socketMsg, setSocketMsg] = useState("")
+    const [sendToChat, setSendToChat] = useState({})
 
 
     // socket
@@ -44,6 +46,7 @@ const Chat = () => {
 
             // send message to the socket server
             socket.current.emit('sendMessage', {
+                userInfo: userInfo,
                 senderId: userInfo._id,
                 senderName: userInfo.name,
                 receiverId: currentChat._id,
@@ -77,11 +80,25 @@ const Chat = () => {
         const { value } = e.target;
         setNewMessage(value)
 
+        // send typing status to socket server
         socket.current.emit('typingMessage', {
             senderId: userInfo._id,
             senderName: userInfo.name,
             receiverId: currentChat._id,
             message: value
+        })
+    }
+
+    // handle emoji text
+    const handleChangeEmoji = (emoji) => {
+        setNewMessage(`${newMessage}${emoji}`)
+
+        // send typing status to socket server
+        socket.current.emit('typingMessage', {
+            senderId: userInfo._id,
+            senderName: userInfo.name,
+            receiverId: currentChat._id,
+            message: emoji
         })
     }
 
@@ -96,6 +113,11 @@ const Chat = () => {
         // get Messages from server
         socket.current.on('receiveMessage', (messages) => {
             setSocketMsg(messages)
+            setSendToChat(messages.userInfo)
+            console.log(messages);
+            if (messages && messages.senderId === userInfo._id && messages.receiverId === currentChat._id) {
+                toast.success(messages.senderName)
+            }
         })
 
         // get user typing status
@@ -110,6 +132,14 @@ const Chat = () => {
         if (socketMsg && currentChat) {
             if ((socketMsg.senderId === userInfo._id && socketMsg.receiverId === currentChat._id) || (socketMsg.senderId === currentChat._id && socketMsg.receiverId === userInfo._id)) {
                 dispatch({ type: "socketMessage", payload: socketMsg })
+            }
+        }
+
+        // set notification alert when chat with others friend
+        if (socketMsg) {
+            if ((socketMsg.receiverId === userInfo._id && socketMsg.senderId !== currentChat._id)) {
+                toast.success(`${socketMsg.senderName} sent you a message`)
+
             }
         }
         setSocketMsg("")
@@ -140,6 +170,7 @@ const Chat = () => {
                             setNewMessage={setNewMessage}
                             handleSendMessage={handleSendMessage}
                             handleChangeMessage={handleChangeMessage}
+                            handleChangeEmoji={handleChangeEmoji}
                         />
                     </div>
                 </div>
@@ -158,6 +189,11 @@ const Chat = () => {
                     </ul>
                 </div>
             </div>
+
+            {/* click on notification message to chat with sender friend */}
+            <a onClick={() => dispatch({ type: 'currentChat', payload: sendToChat })}>
+                <ToastContainer />
+            </a>
         </div >
     );
 };

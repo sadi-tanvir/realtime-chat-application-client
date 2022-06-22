@@ -4,7 +4,7 @@ import ChatInfoSection from './InfoSection/ChatInfoSection';
 
 
 
-const CurrentChat = ({ newMessage, setNewMessage, handleSendMessage,handleChangeMessage }) => {
+const CurrentChat = ({ newMessage, setNewMessage, handleSendMessage,handleChangeMessage,handleChangeEmoji }) => {
 
     return (
         <>
@@ -13,6 +13,7 @@ const CurrentChat = ({ newMessage, setNewMessage, handleSendMessage,handleChange
                 setNewMessage={setNewMessage}
                 handleSendMessage={handleSendMessage}
                 handleChangeMessage={handleChangeMessage}
+                handleChangeEmoji={handleChangeEmoji}
             />
             <ChatInfoSection />
         </>

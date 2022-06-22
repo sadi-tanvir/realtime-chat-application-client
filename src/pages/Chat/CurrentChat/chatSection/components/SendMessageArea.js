@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AttachIcon, EmojiIcon, SendIcon } from '../../../../shared/re-usable-components/Icon';
 
-const SendMessageArea = ({ newMessage, handleSendMessage, handleSendEmoji, handleSendImage,handleChangeMessage }) => {
+const SendMessageArea = ({ newMessage, handleSendMessage, handleChangeEmoji, handleSendImage,handleChangeMessage }) => {
     // state
     const [showEmoji, setShowEmoji] = useState(false)
 
@@ -33,7 +33,7 @@ const SendMessageArea = ({ newMessage, handleSendMessage, handleSendEmoji, handl
                                 <div className="grid grid-cols-5">
                                     {
                                         emojiList.map(item =>
-                                            <span onClick={() => handleSendEmoji(item)} className='cursor-pointer'>{item}</span>
+                                            <span onClick={() => handleChangeEmoji(item)} className='cursor-pointer'>{item}</span>
                                         )
                                     }
                                 </div>
