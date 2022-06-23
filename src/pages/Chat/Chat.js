@@ -156,11 +156,11 @@ const Chat = () => {
     }, [socketMsg])
 
 
-    // getFriends
+    // getFriends from server
     useEffect(() => {
         const getFriends = async () => {
             const res = await axios(`${apiBaseUrl}/get-friends?search=${search}`)
-            dispatch({ type: 'getFriends', payload: res.data.user })
+            dispatch({ type: 'getFriends', payload: res.data.users })
         }
         getFriends()
     }, [search])
