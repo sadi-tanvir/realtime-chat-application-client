@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ImageIcon } from '../../../shared/re-usable-components/Icon';
 import ChatItem from '../components/ChatItem';
-
+import moment from "moment"
 
 
 const ChatList = () => {
@@ -34,11 +34,12 @@ const ChatList = () => {
                                 friend?.lastMsg?.senderId === userInfo._id ?
                                     `you: ${friend?.lastMsg?.message.text || 'sent a Attachment'}` :
                                     friend?.lastMsg?.message.text || `${friend?.friendInfo?.name.split(" ")[0]} sent you a Attachment`
-                                : ""
+                                : `you are connected with ${friend?.friendInfo?.name.split(" ")[0]}`
                         }
                         divClass={currentChat._id === friend.friendInfo._id ? 'bg-teal-400' : 'bg-white'}
                         currentText={currentChat._id === friend.friendInfo._id ? 'text-white' : 'text-slate-500'}
                         status={activeUsers.some(user => user.userId === friend.friendInfo._id) ? 'online' : 'offline'}
+                        msgTime={friend?.lastMsg ? moment(friend?.lastMsg?.createdAt).startOf('mini').fromNow() : ''}
                     />)
                 }
 

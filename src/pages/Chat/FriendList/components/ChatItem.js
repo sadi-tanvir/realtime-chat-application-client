@@ -3,7 +3,7 @@ import Avatar from '../../../shared/re-usable-components/Avatar';
 
 
 
-const ChatItem = ({ img, name,lastMessage, divClass, currentText, status, onClick }) => {
+const ChatItem = ({ img, name,lastMessage, divClass, currentText, status, onClick,msgTime }) => {
     return (
         <>
             <div onClick={onClick} className={`flex justify-start items-center cursor-pointer py-2 px-2 my-2 active:scale-105 transition-all rounded-md ${divClass}`}>
@@ -19,6 +19,7 @@ const ChatItem = ({ img, name,lastMessage, divClass, currentText, status, onClic
                         {name}
                     </h1>
                     <small className={`${currentText}`}>{lastMessage}</small>
+                    <small>{msgTime}</small>
                 </div>
             </div>
         </>

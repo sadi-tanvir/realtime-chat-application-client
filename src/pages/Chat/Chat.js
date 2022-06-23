@@ -17,7 +17,7 @@ const Chat = () => {
     // redux
     const dispatch = useDispatch()
     const { userInfo } = useSelector(state => state.authReducer)
-    const { currentChat, activeUsers } = useSelector(state => state.chatReducer)
+    const { currentChat } = useSelector(state => state.chatReducer)
 
     // state
     const [search, setSearch] = useState("")
@@ -200,9 +200,9 @@ const Chat = () => {
             </div>
 
             {/* click on notification message to chat with sender friend */}
-            <a onClick={() => dispatch({ type: 'currentChat', payload: friendMessagePath })}>
+            <span onClick={() => dispatch({ type: 'currentChat', payload: friendMessagePath })}>
                 <ToastContainer />
-            </a>
+            </span>
         </div >
     );
 };
