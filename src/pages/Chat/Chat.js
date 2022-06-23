@@ -7,6 +7,9 @@ import CurrentChat from './CurrentChat/CurrentChat';
 import UserProfile from './UserProfile/UserProfile';
 import { io } from "socket.io-client"
 import { toast, ToastContainer } from 'react-toastify';
+import useSound from "use-sound"
+import notificationSound from "../../assets/sound/Message_Sound_Effect.mp3"
+import sendingSound from "../../assets/sound/sending_message_sound.mp3"
 
 
 
@@ -20,7 +23,11 @@ const Chat = () => {
     const [search, setSearch] = useState("")
     const [newMessage, setNewMessage] = useState("")
     const [socketMsg, setSocketMsg] = useState("")
-    const [sendToChat, setSendToChat] = useState({})
+    const [friendMessagePath, setFriendMessagePath] = useState({})
+
+    // sound
+    const [notificationPlay] = useSound(notificationSound)
+    const [sendingPlay] = useSound(sendingSound)
 
 
     // socket
@@ -43,7 +50,7 @@ const Chat = () => {
                 message: newMessage
             })
             // console.log(res.data);
-
+            sendingPlay()
             // send message to the socket server
             socket.current.emit('sendMessage', {
                 userInfo: userInfo,
@@ -113,11 +120,9 @@ const Chat = () => {
         // get Messages from server
         socket.current.on('receiveMessage', (messages) => {
             setSocketMsg(messages)
-            setSendToChat(messages.userInfo)
-            console.log(messages);
-            if (messages && messages.senderId === userInfo._id && messages.receiverId === currentChat._id) {
-                toast.success(messages.senderName)
-            }
+            
+            // send user information for notification path
+            setFriendMessagePath(messages.userInfo)
         })
 
         // get user typing status
@@ -138,10 +143,14 @@ const Chat = () => {
         // set notification alert when chat with others friend
         if (socketMsg) {
             if ((socketMsg.receiverId === userInfo._id && socketMsg.senderId !== currentChat._id)) {
-                toast.success(`${socketMsg.senderName} sent you a message`)
+                // notification sound
+                notificationPlay()
 
+                // notification alert
+                toast.success(`${socketMsg.senderName} sent you a message`)
             }
         }
+        // set socket msg empty
         setSocketMsg("")
 
     }, [socketMsg])
@@ -191,7 +200,7 @@ const Chat = () => {
             </div>
 
             {/* click on notification message to chat with sender friend */}
-            <a onClick={() => dispatch({ type: 'currentChat', payload: sendToChat })}>
+            <a onClick={() => dispatch({ type: 'currentChat', payload: friendMessagePath })}>
                 <ToastContainer />
             </a>
         </div >
