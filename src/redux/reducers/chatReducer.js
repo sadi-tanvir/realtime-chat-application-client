@@ -31,7 +31,11 @@ const chatReducer = createReducer(initialState, {
     },
     isTyping: (state, action) => {
         state.isTyping = action.payload
-    }
+    },
+    updateLastMsg: (state, action) => {
+        state.friends.map(friend => friend.friendInfo._id === action.payload.senderId || friend.friendInfo._id === action.payload.receiverId)
+        
+    } 
 })
 
 export default chatReducer

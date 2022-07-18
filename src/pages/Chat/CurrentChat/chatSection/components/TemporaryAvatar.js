@@ -26,12 +26,8 @@ const TemporaryAvatar = () => {
                 </h1>
                 <small>
                     {
-                        `
-                        ${currentChat.name} Connected with you ${moment(currentChat.createdAt).startOf('mini').fromNow()} ago
-                        `
+                        `${currentChat.name} Connected with you ${moment(currentChat.createdAt).startOf('mini').fromNow()}`
                     }
-
-
                 </small>
             </div>
         </div>

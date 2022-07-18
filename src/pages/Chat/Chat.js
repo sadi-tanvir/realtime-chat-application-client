@@ -120,7 +120,7 @@ const Chat = () => {
         // get Messages from server
         socket.current.on('receiveMessage', (messages) => {
             setSocketMsg(messages)
-            
+
             // send user information for notification path
             setFriendMessagePath(messages.userInfo)
         })
@@ -150,6 +150,10 @@ const Chat = () => {
                 toast.success(`${socketMsg.senderName} sent you a message`)
             }
         }
+
+
+        
+
         // set socket msg empty
         setSocketMsg("")
 

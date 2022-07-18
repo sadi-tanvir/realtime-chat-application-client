@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SocialLogin from '../SocialLogin/SocialLogin';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { EmailIcon, PasswordIcon } from '../../shared/re-usable-components/Icon';
 import axios from 'axios';
 import { apiBaseUrl } from '../../../utils/apiBaseUrl';
@@ -20,6 +20,9 @@ const Login = () => {
         email: '',
         password: ''
     })
+
+    // router
+    const navigate = useNavigate()
 
     // handle input change
     const handleChange = (e) => {
@@ -41,9 +44,7 @@ const Login = () => {
                 dispatch({ type: 'userInfo', payload: res.data.user })
                 dispatch({ type: "accessToken", payload: res.data.token })
                 setAuthToken(res.data.token)
-            }
-
-            if (res.data.message) {
+                navigate('/')
                 toast.success(res.data.message)
             }
 
