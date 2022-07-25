@@ -16,8 +16,8 @@ import sendingSound from "../../assets/sound/sending_message_sound.mp3"
 const Chat = () => {
     // redux
     const dispatch = useDispatch()
-    const { userInfo } = useSelector(state => state.authReducer)
-    const { currentChat } = useSelector(state => state.chatReducer)
+    const { accessToken,userInfo } = useSelector(state => state.authReducer)
+    const { friends,currentChat } = useSelector(state => state.chatReducer)
 
     // state
     const [search, setSearch] = useState("")
@@ -34,7 +34,12 @@ const Chat = () => {
     const socket = useRef()
 
     useEffect(() => {
-        socket.current = io('ws://localhost:8000')
+        socket.current = io(apiBaseUrl, {
+            withCredentials: true,
+            extraHeaders: {
+              "my-custom-header": "abcd"
+            }
+          });
         // send current user info to server
         socket.current.emit('addUser', userInfo._id, userInfo)
     }, [])
@@ -152,7 +157,7 @@ const Chat = () => {
         }
 
 
-        
+
 
         // set socket msg empty
         setSocketMsg("")
@@ -167,7 +172,7 @@ const Chat = () => {
             dispatch({ type: 'getFriends', payload: res.data.users })
         }
         getFriends()
-    }, [search])
+    }, [search, dispatch])
 
     return (
         <div>
