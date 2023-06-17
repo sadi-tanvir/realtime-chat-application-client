@@ -78,9 +78,9 @@ const Login = () => {
                                 <span class="text-sm ml-2 hover:primary cursor-pointer hover:-translate-y-1 duration-500 transition-all">Forgot Password ?</span>
                                 <Link to="/register" class="text-sm ml-2 hover:primary cursor-pointer hover:-translate-y-1 duration-500 transition-all">Don't have an account yet?</Link>
                             </div>
-                            <div class="divider">OR</div>
+                            {/* <div class="divider">OR</div> */}
                             {/* social login */}
-                            <SocialLogin />
+                            {/* <SocialLogin /> */}
                         </form>
                     </div>
                 </div>

@@ -120,9 +120,9 @@ const Register = () => {
                             <div class="flex justify-between mt-4">
                                 <Link to="/login" class="text-sm ml-2 hover:primary cursor-pointer hover:-translate-y-1 duration-500 transition-all">Already have an account?</Link>
                             </div>
-                            <div class="divider">OR</div>
+                            {/* <div class="divider">OR</div> */}
                             {/* social login */}
-                            <SocialLogin />
+                            {/* <SocialLogin /> */}
                         </form>
                     </div>
                 </div>
